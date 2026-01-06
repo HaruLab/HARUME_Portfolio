@@ -1,13 +1,19 @@
-
+import { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { withBase } from '../utils/paths';
 
 const Breadcrumbs = ({ replacements = {} }) => {
-  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+  const [pathname, setPathname] = useState('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setPathname(window.location.pathname);
+    }
+  }, []);
+
   const base = import.meta.env.BASE_URL || '/';
-  // Remove base from pathname to get the actual path segments
   const pathWithoutBase = pathname.startsWith(base) ? pathname.slice(base.length) : pathname;
-  const pathSegments = pathWithoutBase.split('/').filter(segment => segment);
+  const pathSegments = pathname ? pathWithoutBase.split('/').filter(segment => segment) : [];
 
   const breadcrumbs = pathSegments.map((segment, index) => {
     const path = '/' + pathSegments.slice(0, index + 1).join('/');
@@ -15,6 +21,7 @@ const Breadcrumbs = ({ replacements = {} }) => {
     const isLast = index === pathSegments.length - 1;
     
     let title = replacements[segment] || (segment.charAt(0).toUpperCase() + segment.slice(1));
+    try { title = decodeURIComponent(title); } catch (e) {}
 
     return (
       <div key={href} className="flex items-center">
