@@ -99,9 +99,9 @@ export default function Price() {
                       label="クオリティ"
                       type="native"
                       options={[
-                        { value: "standard", label: "梅 (Standard)" },
-                        { value: "advanced", label: "竹 (Advanced)" },
-                        { value: "premium", label: "松 (Premium)" },
+                        { value: "standard", label: "梅" },
+                        { value: "advanced", label: "竹" },
+                        { value: "premium", label: "松" },
                       ]}
                       value={productionLevel}
                       onChange={(e) => setProductionLevel(e.target.value)}
@@ -112,7 +112,7 @@ export default function Price() {
                       label="納期"
                       type="native"
                       options={[
-                        { value: "1", label: "1か月以内" },
+                        { value: "1", label: "1か月" },
                         { value: "2", label: "2か月以上" },
                         { value: "0", label: "それ以上" },
                       ]}
@@ -167,7 +167,7 @@ export default function Price() {
               <DetailsInfo summary="ご依頼時に伝えてほしいこと">
                 <div className="p-6 space-y-2">
                   <div className="flex flex-col gap-2">
-                    {["希望納期", "ご予算", "活動名", "ご連絡先", "参考資料 (URLなど)"].map((item, i) => (
+                    {["希望納期", "ご予算","要望", "ご連絡先", "参考資料 (URL、画像など)"].map((item, i) => (
                       <div key={i} className="flex items-center gap-4 py-2 border-b border-[var(--border-color)]/10 last:border-0">
                         <span className="text-xs font-bold font-display opacity-40 w-6">
                           {String(i + 1).padStart(2, '0')}
