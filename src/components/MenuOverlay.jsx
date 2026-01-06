@@ -1,11 +1,12 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Twitter, Instagram, Youtube } from 'lucide-react';
+import { withBase } from '../utils/paths';
 
 const menuItems = [
-  { href: "/", label: "HOME" },
-  { href: "/works", label: "WORKS" },
-  { href: "/price", label: "PRICE" },
-  { href: "/about", label: "ABOUT" },
+  { href: withBase("/"), label: "HOME" },
+  { href: withBase("/works"), label: "WORKS" },
+  { href: withBase("/price"), label: "PRICE" },
+  { href: withBase("/about"), label: "ABOUT" },
 ];
 
 const MenuOverlay = ({ isOpen, onClose }) => {
