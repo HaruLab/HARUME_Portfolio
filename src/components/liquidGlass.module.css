@@ -1,0 +1,58 @@
+.liquidGlassWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: black;
+  padding: 1.5rem 2.5rem;
+  border-radius: 3rem;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+}
+
+.liquidGlassWrapper:hover {
+  padding: 1.8rem 2.8rem;
+}
+
+.liquidGlassWrapper > div {
+  border-radius: 3rem;
+}
+
+.liquidGlassWrapper:hover > div {
+  border-radius: 4rem;
+}
+
+.liquidGlassEffect {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  backdrop-filter: blur(3px);
+  filter: url(#glass-distortion);
+  isolation: isolate;
+}
+
+.liquidGlassTint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.liquidGlassShine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.liquidGlassText {
+  position: relative;
+  z-index: 3;
+  font-size: 2rem;
+  color: black;
+}

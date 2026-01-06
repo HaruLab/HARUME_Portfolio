@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroSimple from '../components/HeroSimple';
+import Header from '../components/Header';
+---
+
+<Layout title="HARUME portfolio">
+  <Header client:load />
+  <main>
+    <HeroSimple client:load />
+  </main>
+</Layout>

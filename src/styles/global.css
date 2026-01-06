@@ -1,0 +1,179 @@
+/* ================================ */
+/* ✅ Google Fonts */
+/* ================================ */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Outfit:wght@400;500;600;700;800;900&display=swap");
+
+/* ✅ Tailwind CSS */
+@import "tailwindcss";
+
+/* ================================ */
+/* ✅ Modern Flat Light Theme */
+/* ================================ */
+:root {
+  /* Common */
+  --transition-speed: 0.3s;
+  
+  /* Light Theme */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F9FA;
+  --text-primary: #1A1A1A;
+  --text-secondary: #666666;
+  --border-color: #E5E7EB;
+  --accent-color: #000000;
+  --corporate-color: #3dcfd4;
+  --corporate-light: #eafafb;
+
+  /* Typography */
+  --font-base: "Noto Sans JP", sans-serif;
+  --font-display: "Outfit", "Noto Sans JP", sans-serif;
+}
+
+body, 
+section, 
+footer, 
+main, 
+header, 
+nav, 
+.bg-secondary,
+.text-primary,
+.text-secondary {
+  transition: background-color var(--transition-speed) ease, 
+              border-color var(--transition-speed) ease,
+              color var(--transition-speed) ease;
+}
+
+/* ================================ */
+/* ✅ Base Styles */
+/* ================================ */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+/* ✅ Utility Classes */
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.container-custom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #333, #666);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.font-display {
+  font-family: 'Outfit', sans-serif !important;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hover-lift {
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+/* Lift is now handled by TiltCard in JS to avoid moving the text container */
+
+/* ✅ Filter Buttons */
+.filter-btn {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.filter-btn:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+/* ✅ Soft Border Radius */
+.rounded-soft {
+  border-radius: 24px;
+}
+
+.rounded-soft-lg {
+  border-radius: 32px;
+}
+
+/* ✅ Custom Animations */
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes menu-slide-in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
