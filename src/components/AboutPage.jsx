@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { FaTwitter, FaDiscord, FaInstagram, FaGithub, FaEnvelope } from "react-icons/fa";
 import { withBase } from "@/utils/paths";
 import { SOCIAL_LINKS } from "@/data/social";
+import { Container } from "@/components/ui/Container";
 
 export default function About() {
   const socialLinks = [
@@ -20,7 +21,8 @@ export default function About() {
       <div className="min-h-screen flex flex-col bg-[var(--bg-primary)]">
       <Header />
 
-      <main className="flex-1 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-24 pb-32 md:pb-20 pt-12 md:pt-40 lg:pt-48">
+      <main className="flex-1 w-full">
+        <Container className="pb-32 md:pb-20 pt-12 md:pt-40 lg:pt-48">
 
         <div className="flex flex-col items-center gap-12 max-w-3xl mx-auto">
           {/* Left Column: Profile Image & Basic Info */}
@@ -56,7 +58,7 @@ export default function About() {
                 <DetailsInfo summary="プロフィール">
                   <div className="space-y-6 text-sm md:text-base leading-relaxed font-bold text-[var(--text-primary)]">
                     <p>
-                      透明感のある映像を作っています。色々なことに手を出して挫折しています。マルチクリエイター憧れます。
+                      透明感のある映像を作っています。創作やものづくりにチャレンジするも、結局うまくいかないことが多いですが、作ることはやはり好きなので続けたいです。
                     </p>
                   </div>
                 </DetailsInfo>
@@ -69,11 +71,11 @@ export default function About() {
                     </li>
                     <li className="flex items-center gap-4">
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--corporate-color)]" />
-                      １曲完成させることができないが曲を作った
+                      曲を作った、１曲完成させたいよ
                     </li>
                     <li className="flex items-center gap-4">
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--corporate-color)]" />
-                      ちょっとした工作
+                      ちょっとしたものづくり  
                     </li>
                   </ul>
                 </DetailsInfo>
@@ -123,6 +125,7 @@ export default function About() {
              </motion.div>
           </div>
         </div>
+        </Container>
       </main>
 
       <Footer />

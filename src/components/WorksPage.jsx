@@ -8,6 +8,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Filter, ChevronDown, ExternalLink } from "lucide-react";
 
 import worksData from "@/data/works_data.json";
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
 import WorkCard from "@/components/WorkCard";
 import { processWorksData, groupWorksByYear, CATEGORIES } from "@/utils/worksDataProcessor";
 
@@ -35,7 +37,8 @@ const WorksPage = ({ isTeaser = false }) => {
       <div className={`flex flex-col bg-[var(--bg-primary)] ${!isTeaser ? 'min-h-screen' : ''}`}>
         {!isTeaser && <Header hidden={!!selectedWork} />}
 
-        <main className={`flex-1 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-24 ${isTeaser ? 'py-20' : 'pb-32 md:pb-20 pt-12 md:pt-40 lg:pt-48'}`}>
+        <main className="flex-1 w-full">
+          <Container className={isTeaser ? 'py-20' : 'pb-32 md:pb-20 pt-12 md:pt-40 lg:pt-48'}>
           
           {/* Page Title & Showreel Section */}
           <div className="mb-6">
@@ -60,19 +63,13 @@ const WorksPage = ({ isTeaser = false }) => {
           {!isTeaser && (
             <div className="flex flex-row justify-between items-center w-full mb-12 gap-4">
               <div className="relative">
-                <button
+                <Button
                   onClick={() => setIsFilterOpen(!isFilterOpen)}
-                  className="h-10 md:h-12 px-6 md:px-8 flex items-center gap-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-full text-[var(--text-primary)] hover:!border-[var(--corporate-color)] hover:!text-[var(--corporate-color)] transition-all group"
                   aria-label="Filter"
+                  icon={<ChevronDown size={14} className={`transition-transform duration-300 ${isFilterOpen ? "rotate-180" : ""}`} />}
                 >
-                  <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase font-display">
-                    {activeCategory === "All" ? "FILTER" : activeCategory}
-                  </span>
-                  <ChevronDown 
-                    size={14} 
-                    className={`transition-transform duration-300 ${isFilterOpen ? "rotate-180" : ""}`} 
-                  />
-                </button>
+                  {activeCategory === "All" ? "FILTER" : activeCategory}
+                </Button>
 
                 <AnimatePresence>
                   {isFilterOpen && (
@@ -120,17 +117,14 @@ const WorksPage = ({ isTeaser = false }) => {
                 </AnimatePresence>
               </div>
 
-              <a 
+              <Button 
                 href="https://www.youtube.com/watch?v=rykHVO-OW8k&list=PL_IDDWCeMOvfUv5lD2VfvLX4TSVfLvrZv"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-10 md:h-12 px-6 md:px-8 flex items-center gap-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-full text-[var(--text-primary)] hover:!border-[var(--corporate-color)] hover:!text-[var(--corporate-color)] transition-all group"
+                icon={<ExternalLink size={14} />}
               >
-                <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase font-display">
-                  PLAYLIST
-                </span>
-                <ExternalLink size={14} />
-              </a>
+                PLAYLIST
+              </Button>
             </div>
           )}
 
@@ -169,15 +163,15 @@ const WorksPage = ({ isTeaser = false }) => {
 
           {isTeaser && (
             <div className="mt-20 flex justify-center">
-              <a 
+              <Button 
                 href={withBase("/works")}
-                className="px-12 py-5 bg-[var(--text-primary)] text-[var(--bg-primary)] rounded-full text-sm font-black tracking-[0.3em] uppercase transition-transform hover:scale-105 active:scale-95"
-                style={{ fontFamily: 'var(--font-display)' }}
+                variant="primary"
               >
                 View All Works
-              </a>
+              </Button>
             </div>
           )}
+          </Container>
         </main>
 
         {!isTeaser && <Footer />}

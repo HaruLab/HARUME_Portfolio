@@ -6,6 +6,7 @@ import PriceSummary from "@/components/PriceSummary";
 import DetailsInfo from "@/components/DetailsInfo";
 import { Providers } from "@/components/Providers";
 import { motion } from "framer-motion";
+import { Container } from "@/components/ui/Container";
 
 const PRICE_CONFIG = {
   mv: 10000,
@@ -65,7 +66,8 @@ export default function Price() {
       <div className="min-h-screen flex flex-col bg-[var(--bg-primary)]">
       <Header breadcrumbReplacements={{ price: "PRICE" }} />
 
-      <main className="flex-1 w-full max-w-[1920px] px-6 md:px-12 lg:px-24 pb-10 pt-24 md:pt-44 lg:pt-52 text-left">
+      <main className="flex-1 w-full text-left">
+        <Container className="pb-10 pt-24 md:pt-44 lg:pt-52" isFullWidth={true}>
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
@@ -181,6 +183,7 @@ export default function Price() {
             </div>
           </div>
         </motion.div>
+        </Container>
       </main>
 
       <Footer />
