@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://HaruLab.github.io',
-  base: '/HARUME_Portfolio',
+  base: import.meta.env.PROD ? '/HARUME_Portfolio' : '/',
   integrations: [react()],
   server: {
     host: true,
