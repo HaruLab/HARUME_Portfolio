@@ -90,7 +90,7 @@ export default function Price() {
                   </motion.p>
                 </div>
                 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+                <div className="flex flex-col gap-8">
                   <div className="space-y-8">
                     <SelectField
                       id="productionLevel"
@@ -130,7 +130,7 @@ export default function Price() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-2 w-full">
+            <div className="flex flex-col gap-2 w-full">
               
               <DetailsInfo summary="注意事項">
                 <ul className="space-y-4 text-sm md:text-base leading-relaxed text-[var(--text-primary)] p-6 font-medium">

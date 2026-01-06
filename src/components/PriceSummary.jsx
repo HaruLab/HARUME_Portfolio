@@ -9,7 +9,7 @@ const PriceSummary = ({
   };
 
   return (
-    <div className="px-10 md:px-14 pb-10 md:pb-14 text-[var(--text-primary)] text-left">
+    <div className="pt-8 text-[var(--text-primary)] text-left">
       <div className="space-y-4 border-t border-[var(--border-color)]/20 pt-6">
         <h2 className="text-xs font-bold tracking-[0.4em] uppercase opacity-30">
           Estimated Price

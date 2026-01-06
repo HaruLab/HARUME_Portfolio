@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Modal from "@/components/Modal";
 import { Providers } from "@/components/Providers";
 import { motion, AnimatePresence } from "framer-motion";
-import { Filter } from "lucide-react";
+import { Filter, ChevronDown, ExternalLink } from "lucide-react";
 
 import worksData from "@/data/works_data.json";
 
@@ -169,51 +169,25 @@ const WorksPage = ({ isTeaser = false }) => {
                 </div>
               ) : null}
 
-              {!isTeaser && (
-                <div className="w-full py-4 border-t border-[var(--border-color)] overflow-hidden">
-                  <a 
-                    href="https://www.youtube.com/watch?v=rykHVO-OW8k&list=PL_IDDWCeMOvfUv5lD2VfvLX4TSVfLvrZv"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block group whitespace-nowrap"
-                  >
-                    <motion.div 
-                      className="flex w-max"
-                      animate={{ x: ["0%", "-50%"] }}
-                      transition={{ 
-                        repeat: Infinity, 
-                        duration: 30, 
-                        ease: "linear" 
-                      }}
-                    >
-                      {[...Array(4)].map((_, i) => (
-                        <div key={i} className="flex items-center">
-                          <span className="text-4xl md:text-6xl font-black tracking-tighter text-[var(--corporate-color)] transition-colors duration-300 mx-6" style={{ fontFamily: 'var(--font-display)' }}>
-                            SHOWREEL 2026
-                          </span>
-                          <span className="text-4xl md:text-6xl text-[var(--corporate-color)] mx-4 -translate-y-[0.05em] leading-none">✦</span>
-                          <span className="text-4xl md:text-6xl font-light tracking-widest text-[var(--text-secondary)] opacity-10 mx-6 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
-                            PLAYLIST
-                          </span>
-                          <span className="text-4xl md:text-6xl text-[var(--corporate-color)] mx-4 -translate-y-[0.05em] leading-none">✦</span>
-                        </div>
-                      ))}
-                    </motion.div>
-                  </a>
-                </div>
-              )}
+              {/* Showreel Section Removed */}
             </div>
           </div>
 
           {!isTeaser && (
-            <div className="flex justify-start w-full mb-12">
+            <div className="flex flex-row justify-between items-center w-full mb-12 gap-4">
               <div className="relative">
                 <button
                   onClick={() => setIsFilterOpen(!isFilterOpen)}
-                  className="w-12 h-12 flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-full text-[var(--text-primary)] hover:border-[var(--corporate-color)] hover:text-[var(--corporate-color)] transition-all uppercase group"
+                  className="h-10 md:h-12 px-6 md:px-8 flex items-center gap-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-full text-[var(--text-primary)] hover:!border-[var(--corporate-color)] hover:!text-[var(--corporate-color)] transition-all group"
                   aria-label="Filter"
                 >
-                  <Filter size={20} className="opacity-40 group-hover:opacity-100 transition-opacity" />
+                  <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase font-display">
+                    {activeCategory === "All" ? "FILTER" : activeCategory}
+                  </span>
+                  <ChevronDown 
+                    size={14} 
+                    className={`transition-transform duration-300 ${isFilterOpen ? "rotate-180" : ""}`} 
+                  />
                 </button>
 
                 <AnimatePresence>
@@ -261,6 +235,18 @@ const WorksPage = ({ isTeaser = false }) => {
                   )}
                 </AnimatePresence>
               </div>
+
+              <a 
+                href="https://www.youtube.com/watch?v=rykHVO-OW8k&list=PL_IDDWCeMOvfUv5lD2VfvLX4TSVfLvrZv"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-10 md:h-12 px-6 md:px-8 flex items-center gap-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-full text-[var(--text-primary)] hover:border-[var(--corporate-color)] hover:text-[var(--corporate-color)] transition-all group"
+              >
+                <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase font-display">
+                  PLAYLIST
+                </span>
+                <ExternalLink size={14} />
+              </a>
             </div>
           )}
 

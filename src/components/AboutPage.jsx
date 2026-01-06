@@ -5,6 +5,7 @@ import { Providers } from "@/components/Providers";
 import { motion } from "framer-motion";
 import { FaTwitter, FaDiscord, FaInstagram, FaGithub, FaEnvelope } from "react-icons/fa";
 import { withBase } from "@/utils/paths";
+import { SOCIAL_LINKS } from "@/data/social";
 
 export default function About() {
   const socialLinks = [
@@ -84,11 +85,11 @@ export default function About() {
                         MAIL
                       </p>
                       <a 
-                         href="mailto:harulablab@gmail.com" 
+                         href={`mailto:${SOCIAL_LINKS.email}`} 
                          className="group flex items-center text-[var(--text-primary)] hover:opacity-60 transition-opacity"
                       >
                          <span className="text-xl md:text-2xl font-black font-display tracking-tight">
-                           harulablab@gmail.com
+                           {SOCIAL_LINKS.email}
                          </span>
                       </a>
                     </div>
@@ -99,10 +100,10 @@ export default function About() {
                       </p>
                       <div className="flex w-full gap-4 md:justify-start">
                         {[
-                          { name: "Twitter", url: "https://x.com/harulablab", icon: <FaTwitter /> },
-                          { name: "Instagram", url: "https://instagram.com", icon: <FaInstagram /> },
-                          { name: "Discord", url: "https://discord.gg/yourdiscord", icon: <FaDiscord /> },
-                          { name: "GitHub", url: "https://github.com", icon: <FaGithub /> },
+                          { name: "Twitter", url: SOCIAL_LINKS.twitter, icon: <FaTwitter /> },
+                          { name: "Instagram", url: SOCIAL_LINKS.instagram, icon: <FaInstagram /> },
+                          { name: "Discord", url: SOCIAL_LINKS.discord, icon: <FaDiscord /> },
+                          { name: "GitHub", url: SOCIAL_LINKS.github, icon: <FaGithub /> },
                         ].map((link) => (
                           <a 
                             key={link.name}
