@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import { withBase } from "@/utils/paths";
+import { withBase } from "@/utils/paths";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Modal from "@/components/Modal";
@@ -299,7 +301,7 @@ const WorksPage = ({ isTeaser = false }) => {
           {isTeaser && (
             <div className="mt-20 flex justify-center">
               <a 
-                href="/works"
+                href={withBase("/works")}
                 className="px-12 py-5 bg-[var(--text-primary)] text-[var(--bg-primary)] rounded-full text-sm font-black tracking-[0.3em] uppercase transition-transform hover:scale-105 active:scale-95"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
