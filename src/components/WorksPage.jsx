@@ -8,142 +8,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Filter, ChevronDown, ExternalLink } from "lucide-react";
 
 import worksData from "@/data/works_data.json";
+import WorkCard from "@/components/WorkCard";
+import { processWorksData, groupWorksByYear, CATEGORIES } from "@/utils/worksDataProcessor";
 
-function WorkCard({ work, index, onClick }) {
-  // ... (WorkCard component remains same)
-  return (
-    <motion.div
-      onClick={onClick}
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.05 }}
-      className="group block cursor-pointer h-full will-change-transform"
-    >
-      <div className="flex flex-col h-full group">
-        <div 
-          className="relative aspect-video mb-4 overflow-hidden bg-[var(--bg-secondary)] border border-[var(--border-color)] transition-all duration-300 group-hover:ring-[5px] group-hover:ring-[var(--corporate-color)] group-hover:ring-inset group-hover:border-transparent"
-          style={{ borderRadius: '8px' }}
-        >
-          <img
-            loading="lazy"
-            src={work.img}
-            alt={work.title}
-            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 ease-out"
-          />
-        </div>
-        
-        <div className="flex-1 flex flex-col px-0.5 pb-2">
-          <div className="flex flex-col gap-1">
-             <div className="flex flex-col items-start gap-0.5">
-                <h3 className="text-sm md:text-base font-black text-[var(--text-primary)] leading-tight m-0 transition-colors group-hover:text-[var(--corporate-color)] line-clamp-2" style={{ fontFamily: 'var(--font-display)' }}>
-                  {work.title}
-                </h3>
-                <span className="text-[9px] font-bold text-[var(--text-secondary)] tracking-[0.2em] uppercase opacity-30">
-                  {work.category}
-                </span>
-             </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+
 
 const WorksPage = ({ isTeaser = false }) => {
   const [selectedWork, setSelectedWork] = useState(null);
   const [activeCategory, setActiveCategory] = useState("ALL"); // Changed from activeFilter
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // Map fetched data to card format and sort by date descending
-  // Map fetched data to card format and sort by date descending
-  // Map fetched data to card format and sort by date descending
-  const works = worksData
-    .map(item => {
-      // Parse credits from description
-      const credits = {};
-      
-      const roleMapping = {
-        "Music Video 制作": "Movie", "動画制作": "Movie", "動画作者": "Movie", "Movie": "Movie", "Video": "Movie", "映像": "Movie", "動画": "Movie", "制作": "Movie",
-        "ジャケットイラスト": "Illust", "Illust": "Illust", "Illustration": "Illust", "イラスト": "Illust", "Art": "Illust", "Ilust": "Illust", "Illstration": "Illust",
-        "Vocal": "Vocal", "ボーカル": "Vocal", "歌": "Vocal", "Cast": "Cast", "出演": "Cast",
-        "Mix": "Mix", "Mixing": "Mix", "ミックス": "Mix", "MIX": "Mix",
-        "Music": "Music", "作曲": "Music", "Music & Lyric": "Music/Lyrics", "作詞作曲": "Music/Lyrics",
-        "Lyrics": "Lyrics", "Lyric": "Lyrics", "作詞": "Lyrics",
-        "Arrangement": "Arrange", "Arranged": "Arrange", "編曲": "Arrange",
-        "Model": "Model", "モデル": "Model",
-        "Motion": "Motion",
-        "Original": "Original", "本家": "Original",
-        "Mastering": "Mastering", "マスタリング": "Mastering",
-        "Inst arrange": "Arrange", "Instrument": "Inst",
-        "Recording": "Rec", "CV": "CV", "レコーディング": "Rec",
-        "3DCG / Composite / Motion Graphics": "3D/Composite",
-        "Participant": "Participant"
-      };
-
-      if (item.description_raw) {
-        const lines = item.description_raw.split('\n');
-        lines.forEach(line => {
-          // Remove common list markers and trim
-          const cleanLine = line.replace(/^[✦·・■⚡️\-\*\[\]【】]\s*/, '').trim();
-          
-          // Enhanced Regex to match various credit patterns from user data
-          const match = cleanLine.match(/^(Music Video 制作|ジャケットイラスト|作詞作曲|Music & Lyric|動画制作|動画作者|編集ソフト|使用ソフト|ナレーション|BGM作曲|Inst arrange|Music|Vocal|Mix|Mixing|MIX|Illust|Ilust|Illstration|Illustration|Live2D|Movie|Video|Cast|Director|Model|Motion|Camera|Lyrics|Lyric|Arrangement|Tuning|Mastering|Instrument|作詞|作曲|編曲|歌|ボーカル|ミックス|イラスト|動画|映像|制作|出演|モデル|Original|Credit|Bass|Guitar|Drums|Piano|Inst|Recording|レコーディング|CV|3DCG \/ Composite \/ Motion Graphics|Participant)(?:\s*(?:&|\/|\+)\s*[a-zA-Z0-9\u3000-\u30Fe\u4e00-\u9fa0]+)*\s*[：:\-]\s*(.*)/i);
-          
-          if (match) {
-            let rawKey = match[1].trim();
-            // Normalize key using mapping, default to capitalized raw key
-            let key = roleMapping[rawKey] || roleMapping[Object.keys(roleMapping).find(k => k.toLowerCase() === rawKey.toLowerCase())] || rawKey.charAt(0).toUpperCase() + rawKey.slice(1);
-            
-            // Clean value: remove URLs, twitter handles, and extra symbols
-            let value = match[2].trim();
-            value = value.replace(/https?:\/\/\S+/g, '') // Remove URLs
-                         .replace(/@[a-zA-Z0-9_]+/g, '') // Remove Twitter handles
-                         .replace(/\(.*\)/g, '') // Remove parentheses content if it's typically just extra info? Maybe keep for now if it's like (Guitar)
-                         .trim(); 
-                         
-            // Further clean if value ends with symbols
-            value = value.replace(/[,/|]+$/, '').trim();
-
-            if (value && value.length > 0) {
-               credits[key] = value;
-            }
-          }
-        });
-        
-        if (Object.keys(credits).length === 0 && item.channel) {
-          credits["Channel"] = item.channel;
-        }
-      } else {
-         credits["Channel"] = item.channel;
-      }
-
-      return {
-        title: item.title,
-        category: item.category || "MV",
-        img: item.thumbnail,
-        href: item.url,
-        description: "",
-        credits: credits,
-        publishDate: item.publishDate ? new Date(item.publishDate) : null
-      };
-    })
-    .sort((a, b) => (b.publishDate || 0) - (a.publishDate || 0));
-
-  const categories = ["ALL", "MV", "3D", "PHOTO", "自主制作"];
+  // Process data using utility
+  const works = processWorksData(worksData);
+  const categories = CATEGORIES;
 
   const filteredWorks = works.filter((work) => {
     if (activeCategory === "ALL") return true;
     return work.category === activeCategory;
   });
 
-  // Group works by year
-  const groupedWorks = filteredWorks.reduce((acc, work) => {
-    const year = work.publishDate ? work.publishDate.getFullYear() : "Unknown";
-    if (!acc[year]) acc[year] = [];
-    acc[year].push(work);
-    return acc;
-  }, {});
-
+  const groupedWorks = groupWorksByYear(filteredWorks);
   const sortedYears = Object.keys(groupedWorks).sort((a, b) => b - a);
 
   return (
@@ -240,7 +124,7 @@ const WorksPage = ({ isTeaser = false }) => {
                 href="https://www.youtube.com/watch?v=rykHVO-OW8k&list=PL_IDDWCeMOvfUv5lD2VfvLX4TSVfLvrZv"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-10 md:h-12 px-6 md:px-8 flex items-center gap-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-full text-[var(--text-primary)] hover:border-[var(--corporate-color)] hover:text-[var(--corporate-color)] transition-all group"
+                className="h-10 md:h-12 px-6 md:px-8 flex items-center gap-3 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-full text-[var(--text-primary)] hover:!border-[var(--corporate-color)] hover:!text-[var(--corporate-color)] transition-all group"
               >
                 <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase font-display">
                   PLAYLIST
