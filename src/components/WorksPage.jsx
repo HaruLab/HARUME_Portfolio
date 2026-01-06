@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { withBase } from "@/utils/paths";
-import { withBase } from "@/utils/paths";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Modal from "@/components/Modal";

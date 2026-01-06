@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Providers } from "@/components/Providers";
 import { motion } from "framer-motion";
 import { FaTwitter, FaDiscord, FaInstagram, FaGithub, FaEnvelope } from "react-icons/fa";
+import { withBase } from "@/utils/paths";
 
 export default function About() {
   const socialLinks = [
@@ -30,7 +31,7 @@ export default function About() {
           >
             <div className="relative w-32 h-32 md:w-48 md:h-48 overflow-hidden bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-full">
                <img
-                  src="/HARUME_icon.jpg"
+                  src={withBase("/HARUME_icon.jpg")}
                   alt="HARUME Logo"
                   className="w-full h-full object-cover"
                 />
