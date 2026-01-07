@@ -13,6 +13,14 @@ export default defineConfig({
     host: true,
   },
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    ssr: {
+      noExternal: ['@react-three/cannon', 'cannon-es']
+    },
+    resolve: {
+      alias: {
+        '@react-three/cannon': '@react-three/cannon/dist/index.js'
+      }
+    }
   }
 });
