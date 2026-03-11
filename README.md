@@ -1,5 +1,12 @@
 # HARUME Portfolio (Astro)
 
+## Structure
+
+- `src/pages/`: Astro routes
+- `src/features/`: Page-level React components (one folder per page/feature)
+- `src/components/`: Shared React components (UI/layout/etc.)
+- `src/utils/`, `src/data/`, `src/styles/`: Utilities, data, global styles
+
 ## Commands
 
 | Command | Action |
