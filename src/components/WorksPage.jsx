@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Modal from "@/components/Modal";
 import { Providers } from "@/components/Providers";
 import { motion, AnimatePresence } from "framer-motion";
-import { Filter, ChevronDown, ExternalLink } from "lucide-react";
+import { ChevronDown, ExternalLink } from "lucide-react";
 
 import worksData from "@/data/works_data.json";
 import { Button } from "@/components/ui/Button";

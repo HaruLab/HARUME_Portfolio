@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Providers } from "@/components/Providers";
 import { motion } from "framer-motion";
-import { FaTwitter, FaDiscord, FaInstagram, FaGithub, FaEnvelope } from "react-icons/fa";
+import { FaTwitter, FaDiscord, FaInstagram, FaGithub } from "react-icons/fa";
 import { withBase } from "@/utils/paths";
 import { SOCIAL_LINKS } from "@/data/social";
 import { Container } from "@/components/ui/Container";
