@@ -1,8 +1,7 @@
 import React from "react";
-// import StickySections from './StickySections';
-import WorksPage from "./WorksPage";
-import Footer from "./Footer";
-import Header from "./Header";
+import WorksPage from "@/features/works/WorksPage";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 const HomePage = () => {
   return (

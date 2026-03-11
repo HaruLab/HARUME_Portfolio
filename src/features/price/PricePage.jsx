@@ -36,7 +36,7 @@ const LEVEL_DESCRIPTIONS = {
   premium: "3DCGやモーショングラフィックスなどを多く用いた構成が可能です。制作に時間がかかります。",
 };
 
-export default function Price() {
+export default function PricePage() {
   const [productionLevel, setProductionLevel] = useState("standard");
   const [deadline, setDeadline] = useState("0");
 

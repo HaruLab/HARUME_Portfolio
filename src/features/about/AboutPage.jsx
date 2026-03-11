@@ -8,7 +8,7 @@ import { withBase } from "@/utils/paths";
 import { SOCIAL_LINKS } from "@/data/social";
 import { Container } from "@/components/ui/Container";
 
-export default function About() {
+export default function AboutPage() {
   const socialLinks = [
     { name: "Twitter (X)", url: "https://twitter.com/your_x_account", icon: <FaTwitter /> },
     { name: "Discord", url: "https://discord.gg/yourdiscord", icon: <FaDiscord /> },
